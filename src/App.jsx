@@ -16,25 +16,39 @@ function App() {
     if (input === "") {
       return;
     }
-    settask([...task, input]);
-    console.log([...task, input]);
+    if (edittask !== null) {
+
+      let updatetask = [...task]
+      updatetask[edittask] = input;
+      settask(updatetask);
+      setedittask(null);
+    }
+
+    else {
+      settask([...task, input]);
+      console.log([...task, input]);
+
+    }
+
     setinput('');
   }
-  
+
   const deltodo = (index) => {
 
     let updatearr = task.filter((value, i) => {
-        if(i !== index){
-          return value
-        }
+      if (i !== index) {
+        return value
+      }
     })
     console.log(updatearr)
     settask(updatearr)
   }
 
   const edittodo = (index) => {
-    if
+    setinput(task[index])
+    setedittask(index)
   }
+
 
   return (
     <>
